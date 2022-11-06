@@ -11,15 +11,15 @@ public interface ApiMovieInterface {
     @GET("popular")
     Call<MovieResultsDto> getPopularMovie(@Query("api_key") String apiKey, @Query("page") int page);
 
-    @GET("top_rated?")
+    @GET("top_rated")
     Call<MovieResultsDto> getTopRateMovie(@Query("api_key") String apiKey, @Query("page") int page);
 
-    @GET("upcoming?")
+    @GET("upcoming")
     Call<MovieResultsDto> getUpcomingMovie(@Query("api_key") String apiKey, @Query("page") int page);
 
-    @GET("now_playing?")
+    @GET("now_playing")
     Call<MovieResultsDto> getNowPlayingMovie(@Query("api_key") String apiKey, @Query("page") int page);
 
-    @GET("{id}/credits?")
+    @GET("{id}/credits")
     Call<MovieResultsDto> getCastMovie(@Path("id") int id, @Query("api_key") String apiKey);
 }
