@@ -1,5 +1,7 @@
 package com.example.movie.api;
 
+import com.example.movie.Constants;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -8,7 +10,10 @@ public class ApiClient {
 
     public static ApiMovieInterface getClient() {
         if (mRetrofit == null) {
-            mRetrofit = new Retrofit.Builder().baseUrl("http://api.themoviedb.org/3/movie/").addConverterFactory(GsonConverterFactory.create()).build();
+            mRetrofit = new Retrofit.Builder()
+                    .baseUrl(Constants.API_BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
         }
 
         return mRetrofit.create(ApiMovieInterface.class);

@@ -41,6 +41,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         public MovieViewHolder(@NonNull View itemView) {
             super(itemView);
             movieItem = itemView.findViewById(R.id.movie_parent_layout);
+            favourite = itemView.findViewById(R.id.favourite_movie);
+            title = itemView.findViewById(R.id.title_movie);
+            rate = itemView.findViewById(R.id.rate_movie);
+            overview = itemView.findViewById(R.id.overview_movie);
         }
     }
 }
