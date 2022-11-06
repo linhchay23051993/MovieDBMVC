@@ -21,7 +21,16 @@ public class MovieListDto {
     @SerializedName("release_date")
     private String mReleaseDate;
 
-    public int getmId() {
+    public MovieListDto(int mId, String mPosterPath, String mOverview, String mTitle, String mVoteAverage, String mReleaseDate) {
+        this.mId = mId;
+        this.mPosterPath = mPosterPath;
+        this.mOverview = mOverview;
+        this.mTitle = mTitle;
+        this.mVoteAverage = mVoteAverage;
+        this.mReleaseDate = mReleaseDate;
+    }
+
+    public int getId() {
         return mId;
     }
 

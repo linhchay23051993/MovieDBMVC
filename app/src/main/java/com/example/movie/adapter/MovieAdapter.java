@@ -1,5 +1,6 @@
 package com.example.movie.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movie.R;
+import com.example.movie.entity.MovieListDto;
+
+import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
+
+    private List<MovieListDto> mMovieList;
 
     @NonNull
     @Override
@@ -23,12 +29,18 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
-
+        holder.title.setText(mMovieList.get(position).getOverview());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mMovieList.size();
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void setMovieList(List<MovieListDto> mMovieList) {
+        this.mMovieList = mMovieList;
+        notifyDataSetChanged();
     }
 
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
