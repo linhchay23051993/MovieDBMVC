@@ -8,7 +8,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiMovieInterface {
-    @GET("popular?")
+    @GET("popular")
     Call<MovieResultsDto> getPopularMovie(@Query("api_key") String apiKey, @Query("page") int page);
 
     @GET("top_rated?")
