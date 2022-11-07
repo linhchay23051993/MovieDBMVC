@@ -6,9 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movie.R;
@@ -44,19 +46,25 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     }
 
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
-        public LinearLayout movieItem;
+        public CardView movieItem;
         public ImageView favourite;
+        public ImageView poster;
         public TextView title;
         public TextView rate;
+        public TextView releaseDate;
         public TextView overview;
+        public ProgressBar progressBar;
 
         public MovieViewHolder(@NonNull View itemView) {
             super(itemView);
             movieItem = itemView.findViewById(R.id.movie_parent_layout);
-            favourite = itemView.findViewById(R.id.favourite_movie);
-            title = itemView.findViewById(R.id.title_movie);
-            rate = itemView.findViewById(R.id.rate_movie);
-            overview = itemView.findViewById(R.id.overview_movie);
+            favourite = itemView.findViewById(R.id.favorite_imageview);
+            poster = itemView.findViewById(R.id.poster_imageview);
+            title = itemView.findViewById(R.id.title_textview);
+            rate = itemView.findViewById(R.id.vote_average_textview);
+            releaseDate = itemView.findViewById(R.id.release_date_textview);
+            overview = itemView.findViewById(R.id.overview_textview);
+            progressBar = itemView.findViewById(R.id.progress_bar);
         }
     }
 }

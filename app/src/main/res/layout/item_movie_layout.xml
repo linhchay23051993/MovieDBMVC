@@ -1,42 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/movie_parent_layout"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:id="@+id/movie_parent_layout"
+    android:layout_margin="4dp">
 
-    <ImageView
-        android:id="@+id/poster_movie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher_background" />
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/title_movie"
-            android:layout_width="match_parent"
+            android:id="@+id/title_textview"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title"
-            android:textColor="@color/black" />
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="6dp"
+            android:text="title"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold|italic" />
 
         <ImageView
-            android:id="@+id/favourite_movie"
+            android:id="@+id/poster_imageview"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_textview"
+            android:paddingLeft="6dp"
+            android:paddingBottom="2dp"
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
-            android:id="@+id/rate_movie"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:id="@+id/release_title_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title_textview"
+            android:layout_toRightOf="@+id/poster_imageview"
+            android:paddingLeft="6dp"
+            android:text="Release date: "
+            android:textColor="@color/black"
+            android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/overview_movie"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Overview" />
-    </LinearLayout>
-</LinearLayout>
+            android:id="@+id/release_date_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/release_title_textview"
+            android:layout_toRightOf="@+id/release_title_textview"
+            android:paddingLeft="6dp"
+            android:text="2018-12-11"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/ratting_title_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/release_title_textview"
+            android:layout_toRightOf="@+id/poster_imageview"
+            android:paddingLeft="6dp"
+            android:text="Rating: "
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/vote_average_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/release_date_textview"
+            android:layout_toRightOf="@+id/ratting_title_textview"
+            android:paddingLeft="6dp"
+            android:text="2018-12-11"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/adult_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/release_date_textview"
+            android:layout_marginLeft="80dp"
+            android:layout_toLeftOf="@id/favorite_imageview"
+            android:layout_toRightOf="@id/vote_average_textview"
+            android:src="@mipmap/ic_adult" />
+
+        <ImageView
+            android:id="@+id/favorite_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/release_date_textview"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/ic_adult" />
+
+        <TextView
+            android:id="@+id/overview_title_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vote_average_textview"
+            android:layout_toRightOf="@+id/poster_imageview"
+            android:paddingLeft="6dp"
+            android:text="Overview"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/overview_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/overview_title_textview"
+            android:layout_toRightOf="@+id/poster_imageview"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:paddingLeft="6dp"
+            android:text="overview detail"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title_textview"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="6dp"
+            android:indeterminate="true" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
