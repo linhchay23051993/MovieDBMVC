@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<MovieResultsDto> call, Throwable t) {
-
+                Log.d("Linhchay", "resist().get(0).getOverview()");
             }
         });
 

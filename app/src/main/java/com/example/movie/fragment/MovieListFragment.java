@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movie.R;
@@ -30,11 +31,12 @@ public class MovieListFragment extends Fragment {
         mRecyclerView = view.findViewById(R.id.recycler_list_movie);
         mAdapter = new MovieAdapter();
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         List<MovieListDto> mMovieList = new ArrayList<>();
-        mMovieList.add(new MovieListDto(11,"22","33","44","55","66"));
-        mMovieList.add(new MovieListDto(11,"22","33","44","55","66"));
-
+        mMovieList.add(new MovieListDto(11, "22", "33", "44", "55", "66"));
+        mMovieList.add(new MovieListDto(11, "22", "33", "44", "55", "66"));
+        mAdapter.setMovieList(mMovieList);
         return view;
     }
 }
