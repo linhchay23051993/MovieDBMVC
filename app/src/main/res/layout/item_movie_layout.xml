@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/movie_parent_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/movie_parent_layout"
     android:layout_margin="4dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/title_textview"
@@ -23,11 +23,12 @@
 
         <ImageView
             android:id="@+id/poster_imageview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
             android:layout_below="@+id/title_textview"
             android:paddingLeft="6dp"
             android:paddingBottom="2dp"
+            android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher" />
 
         <TextView
@@ -75,21 +76,11 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/adult_imageview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/release_date_textview"
-            android:layout_marginLeft="80dp"
-            android:layout_toLeftOf="@id/favorite_imageview"
-            android:layout_toRightOf="@id/vote_average_textview"
-            android:src="@mipmap/ic_adult" />
-
-        <ImageView
             android:id="@+id/favorite_imageview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@id/release_date_textview"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/release_title_textview"
             android:src="@mipmap/ic_adult" />
 
         <TextView
@@ -121,7 +112,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/title_textview"
             android:layout_marginLeft="6dp"
+
             android:layout_marginTop="6dp"
-            android:indeterminate="true" />
+            android:indeterminate="true"
+            android:visibility="gone" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

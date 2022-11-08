@@ -1,6 +1,7 @@
 package com.example.movie.adapter;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +14,22 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.movie.GlobalConstants;
 import com.example.movie.R;
 import com.example.movie.entity.MovieListDto;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
 
     private List<MovieListDto> mMovieList;
+    private Context mContext;
+
+    public MovieAdapter(Context context) {
+        mContext = context;
+    }
 
     @NonNull
     @Override
@@ -31,7 +40,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
-        holder.title.setText(mMovieList.get(position).getOverview());
+        holder.title.setText(mMovieList.get(position).getTitle());
+        holder.releaseDate.setText(mMovieList.get(position).getReleaseDate());
+        holder.rate.setText(mMovieList.get(position).getVoteAverage());
+        holder.overview.setText(mMovieList.get(position).getOverview());
+        Picasso.with(mContext).load(GlobalConstants.IMAGE_BASE_URL + mMovieList.get(position).getPosterPath()).into(holder.poster);
     }
 
     @Override
@@ -40,8 +53,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setMovieList(List<MovieListDto> mMovieList) {
-        this.mMovieList = mMovieList;
+    public void setMovieList(List<MovieListDto> movieList) {
+        this.mMovieList = movieList;
         notifyDataSetChanged();
     }
 

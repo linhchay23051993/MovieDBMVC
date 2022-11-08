@@ -11,16 +11,25 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.movie.GlobalConstants;
 import com.example.movie.R;
 import com.example.movie.adapter.MovieAdapter;
+import com.example.movie.api.ApiClient;
 import com.example.movie.entity.MovieListDto;
+import com.example.movie.entity.MovieResultsDto;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MovieListFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private MovieAdapter mAdapter;
+
+    private List<MovieListDto> mMovieListDto;
 
     @Nullable
     @Override
@@ -29,14 +38,26 @@ public class MovieListFragment extends Fragment {
         View view = inflater.inflate(R.layout.movie_list_fragment_layout, container, false);
 
         mRecyclerView = view.findViewById(R.id.recycler_list_movie);
-        mAdapter = new MovieAdapter();
-        mRecyclerView.setAdapter(mAdapter);
+        mAdapter = new MovieAdapter(getContext());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        List<MovieListDto> mMovieList = new ArrayList<>();
-        mMovieList.add(new MovieListDto(11, "22", "33", "44", "55", "66"));
-        mMovieList.add(new MovieListDto(11, "22", "33", "44", "55", "66"));
-        mAdapter.setMovieList(mMovieList);
+        getMovieListFromAPI();
         return view;
+    }
+
+    private void getMovieListFromAPI() {
+        ApiClient.getClient().getPopularMovie(GlobalConstants.API_KEY, 1).enqueue(new Callback<MovieResultsDto>() {
+            @Override
+            public void onResponse(Call<MovieResultsDto> call, Response<MovieResultsDto> response) {
+                mMovieListDto = new ArrayList<>();
+                mMovieListDto = response.body().getResultsDtoList();
+                mAdapter.setMovieList(mMovieListDto);
+                mRecyclerView.setAdapter(mAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<MovieResultsDto> call, Throwable t) {
+
+            }
+        });
     }
 }

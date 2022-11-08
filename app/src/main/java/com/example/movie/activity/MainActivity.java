@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.Toast;
 
-import com.example.movie.Constants;
+import com.example.movie.GlobalConstants;
 import com.example.movie.R;
 import com.example.movie.adapter.ViewpagerAdapter;
 import com.example.movie.api.ApiClient;
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(mViewpagerAdapter);
         mViewPager.setOffscreenPageLimit(3);
 
-        ApiClient.getClient().getPopularMovie(Constants.API_KEY, 1).enqueue(new Callback<MovieResultsDto>() {
+        ApiClient.getClient().getPopularMovie(GlobalConstants.API_KEY, 1).enqueue(new Callback<MovieResultsDto>() {
             @Override
             public void onResponse(Call<MovieResultsDto> call, Response<MovieResultsDto> response) {
                 Log.d("Linhchay", response.body().getResultsDtoList().get(0).getOverview());
