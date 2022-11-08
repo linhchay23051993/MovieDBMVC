@@ -6,29 +6,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movie.GlobalConstants;
 import com.example.movie.R;
 import com.example.movie.entity.MovieListDto;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
 
     private List<MovieListDto> mMovieList;
     private Context mContext;
+    private View.OnClickListener mOnClickListener;
 
-    public MovieAdapter(Context context) {
+    public MovieAdapter(Context context, View.OnClickListener onClickListener) {
         mContext = context;
+        mOnClickListener = onClickListener;
     }
 
     @NonNull
@@ -44,7 +46,21 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         holder.releaseDate.setText(mMovieList.get(position).getReleaseDate());
         holder.rate.setText(mMovieList.get(position).getVoteAverage());
         holder.overview.setText(mMovieList.get(position).getOverview());
-        Picasso.with(mContext).load(GlobalConstants.IMAGE_BASE_URL + mMovieList.get(position).getPosterPath()).into(holder.poster);
+        holder.progressBar.setVisibility(View.VISIBLE);
+
+        holder.movieItem.setOnClickListener(mOnClickListener);
+        holder.movieItem.setTag(mMovieList.get(position));
+        Picasso.with(mContext).load(GlobalConstants.IMAGE_BASE_URL + mMovieList.get(position).getPosterPath()).into(holder.poster, new Callback() {
+            @Override
+            public void onSuccess() {
+                holder.progressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
     }
 
     @Override

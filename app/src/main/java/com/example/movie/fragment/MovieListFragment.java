@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,7 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MovieListFragment extends Fragment {
+public class MovieListFragment extends Fragment implements View.OnClickListener {
     private RecyclerView mRecyclerView;
     private MovieAdapter mAdapter;
 
@@ -38,7 +39,7 @@ public class MovieListFragment extends Fragment {
         View view = inflater.inflate(R.layout.movie_list_fragment_layout, container, false);
 
         mRecyclerView = view.findViewById(R.id.recycler_list_movie);
-        mAdapter = new MovieAdapter(getContext());
+        mAdapter = new MovieAdapter(getContext(), this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         getMovieListFromAPI();
         return view;
@@ -59,5 +60,14 @@ public class MovieListFragment extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.movie_parent_layout:
+                MovieListDto movieListDto = (MovieListDto) view.getTag();
+                Toast.makeText(getContext(), movieListDto.getTitle(), Toast.LENGTH_SHORT).show();
+        }
     }
 }
