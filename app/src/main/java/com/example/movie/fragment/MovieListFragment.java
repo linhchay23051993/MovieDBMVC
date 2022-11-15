@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,7 +40,7 @@ public class MovieListFragment extends Fragment implements View.OnClickListener 
         View view = inflater.inflate(R.layout.movie_list_fragment_layout, container, false);
 
         mRecyclerView = view.findViewById(R.id.recycler_list_movie);
-        mAdapter = new MovieAdapter(getContext(), this);
+        mAdapter = new MovieAdapter(getContext(), this,2);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         getMovieListFromAPI();
         return view;
@@ -52,6 +53,7 @@ public class MovieListFragment extends Fragment implements View.OnClickListener 
                 mMovieListDto = new ArrayList<>();
                 mMovieListDto = response.body().getResultsDtoList();
                 mAdapter.setMovieList(mMovieListDto);
+                mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
                 mRecyclerView.setAdapter(mAdapter);
             }
 
